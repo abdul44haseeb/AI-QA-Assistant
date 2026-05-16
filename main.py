@@ -1,51 +1,35 @@
-from groq import Groq
-from dotenv import load_dotenv
-import os
+from app.analyzer import analyze_conversation
+from app.utils import read_transcript_file, save_report
 
-# Load environment variables
-load_dotenv()
+# Read transcript file
+transcript = read_transcript_file("data/sample_transcript.txt")
 
-# Get API key from .env
-api_key = os.getenv("GROQ_API_KEY")
+# Run AI analysis
+analysis_data = analyze_conversation(transcript)
 
-# Create Groq client
-client = Groq(api_key=api_key)
-
-# Sample customer support transcript
-transcript = """
-Customer: I have been waiting for my refund for 10 days.
-
-Agent: I understand your frustration. Let me check this for you.
-
-Customer: This is very disappointing.
-
-Agent: I apologize for the inconvenience. Your refund will be processed within 24 hours.
-"""
-
-# AI prompt
-prompt = f"""
-Analyze this customer support conversation.
-
-Provide:
-1. Conversation summary
-2. Customer sentiment
-3. Empathy score out of 10
-4. Professionalism score out of 10
-5. Coaching feedback for the agent
-
-Conversation:
-{transcript}
-"""
-
-# Send request to Groq
-response = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    messages=[
-        {"role": "user", "content": prompt}
-    ],
-    temperature=0.3
+# Save report
+save_report(
+    analysis_data,
+    "reports/qa_report.json"
 )
 
-# Print AI response
-print("\nAI QA ANALYSIS:\n")
-print(response.choices[0].message.content)
+print("\n================ EXTRACTED VALUES ================\n")
+
+print("Summary:")
+print(analysis_data["summary"])
+
+print("\nCustomer Sentiment:")
+print(analysis_data["customer_sentiment"])
+
+print("\nEmpathy Score:")
+print(analysis_data["empathy_score"])
+
+print("\nProfessionalism Score:")
+print(analysis_data["professionalism_score"])
+
+print("\nCoaching Feedback:")
+
+for feedback in analysis_data["coaching_feedback"]:
+    print("-", feedback)
+
+print("\nReport saved successfully in reports/qa_report.json")

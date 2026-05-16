@@ -1,0 +1,11 @@
+Customer: I ordered a laptop last week and it still has not arrived.
+
+Agent: I sincerely apologize for the delay. Let me quickly check your order status.
+
+Customer: This is very frustrating because I needed it urgently.
+
+Agent: I completely understand your concern. I can see there was a shipping delay. Your order should arrive within 2 business days.
+
+Customer: I hope this does not happen again.
+
+Agent: I truly apologize for the inconvenience caused today.
