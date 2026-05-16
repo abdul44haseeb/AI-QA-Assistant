@@ -48,4 +48,4 @@ def analyze_conversation(transcript):
     # Convert AI JSON into Python dictionary
     analysis_data = clean_and_parse_json(ai_output)
 
-    return analysis_data
+    return analysis_data, ai_output

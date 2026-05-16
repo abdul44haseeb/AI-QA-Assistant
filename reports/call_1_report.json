@@ -1,0 +1,10 @@
+{
+    "summary": "The customer's internet is not working, and the agent has arranged for a technician to visit",
+    "customer_sentiment": "frustrated",
+    "empathy_score": 8,
+    "professionalism_score": 9,
+    "coaching_feedback": [
+        "The agent could have asked for the customer's availability to ensure the technician's visit is convenient",
+        "The agent could have provided a more specific time for the technician's visit, rather than just 'evening'"
+    ]
+}

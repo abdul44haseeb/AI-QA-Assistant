@@ -1,0 +1,7 @@
+Customer: My order was supposed to arrive 3 days ago.
+
+Agent: Sorry for the delay. Let me track your shipment.
+
+Customer: This keeps happening repeatedly.
+
+Agent: I completely understand your concern. Your package will arrive tomorrow.

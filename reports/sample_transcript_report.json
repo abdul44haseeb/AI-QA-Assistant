@@ -1,0 +1,10 @@
+{
+    "summary": "The customer's laptop order was delayed, but the agent provided a clear update and expected delivery time.",
+    "customer_sentiment": "Frustrated",
+    "empathy_score": 8,
+    "professionalism_score": 9,
+    "coaching_feedback": [
+        "The agent could have offered a more personalized solution or compensation for the delay.",
+        "The agent effectively used empathetic language, but could have asked more questions to understand the customer's needs."
+    ]
+}

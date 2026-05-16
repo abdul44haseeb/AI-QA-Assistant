@@ -1,35 +1,55 @@
+import os
+import json
+
 from app.analyzer import analyze_conversation
-from app.utils import read_transcript_file, save_report
 
-# Read transcript file
-transcript = read_transcript_file("data/sample_transcript.txt")
+# Folder paths
+DATA_FOLDER = "data"
+REPORTS_FOLDER = "reports"
 
-# Run AI analysis
-analysis_data = analyze_conversation(transcript)
+# Create reports folder if not exists
+os.makedirs(REPORTS_FOLDER, exist_ok=True)
 
-# Save report
-save_report(
-    analysis_data,
-    "reports/qa_report.json"
-)
+# Get all transcript files
+transcript_files = [
+    file for file in os.listdir(DATA_FOLDER)
+    if file.endswith(".txt")
+]
 
-print("\n================ EXTRACTED VALUES ================\n")
+# Process each transcript
+for file_name in transcript_files:
 
-print("Summary:")
-print(analysis_data["summary"])
+    file_path = os.path.join(DATA_FOLDER, file_name)
 
-print("\nCustomer Sentiment:")
-print(analysis_data["customer_sentiment"])
+    # Read transcript
+    with open(file_path, "r", encoding="utf-8") as file:
+        transcript = file.read()
 
-print("\nEmpathy Score:")
-print(analysis_data["empathy_score"])
+    print(f"\nProcessing: {file_name}")
 
-print("\nProfessionalism Score:")
-print(analysis_data["professionalism_score"])
+    # AI Analysis
+    analysis_data, raw_response = analyze_conversation(transcript)
 
-print("\nCoaching Feedback:")
+    # Print result
+    print("\nSummary:")
+    print(analysis_data["summary"])
 
-for feedback in analysis_data["coaching_feedback"]:
-    print("-", feedback)
+    print("\nCustomer Sentiment:")
+    print(analysis_data["customer_sentiment"])
 
-print("\nReport saved successfully in reports/qa_report.json")
+    print("\nEmpathy Score:")
+    print(analysis_data["empathy_score"])
+
+    print("\nProfessionalism Score:")
+    print(analysis_data["professionalism_score"])
+
+    # Generate report file name
+    report_name = file_name.replace(".txt", "_report.json")
+
+    report_path = os.path.join(REPORTS_FOLDER, report_name)
+
+    # Save report
+    with open(report_path, "w", encoding="utf-8") as report_file:
+        json.dump(analysis_data, report_file, indent=4)
+
+    print(f"\nReport saved: {report_name}")

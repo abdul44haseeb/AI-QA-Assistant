@@ -1,0 +1,7 @@
+Customer: My internet is not working since yesterday.
+
+Agent: I apologize for the inconvenience. Let me check your connection.
+
+Customer: I work from home and this is affecting me badly.
+
+Agent: I understand your frustration. A technician will visit today evening.
