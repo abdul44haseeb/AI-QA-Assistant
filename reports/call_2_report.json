@@ -1,10 +1,10 @@
 {
-    "summary": "The customer's order was delayed, and the agent apologized and provided an updated delivery time.",
-    "customer_sentiment": "frustrated",
+    "summary": "The customer's order was delayed and the agent apologized, tracked the shipment, and provided an updated delivery time.",
+    "customer_sentiment": "Frustrated",
     "empathy_score": 8,
     "professionalism_score": 9,
     "coaching_feedback": [
         "The agent could have offered a more personalized apology or explanation for the repeated delays.",
-        "The agent could have also provided additional solutions or compensation for the customer's inconvenience."
+        "The agent could have also provided additional compensation or a gesture of goodwill for the customer's inconvenience."
     ]
 }

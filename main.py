@@ -1,3 +1,4 @@
+import csv
 import os
 import json
 
@@ -6,9 +7,21 @@ from app.analyzer import analyze_conversation
 # Folder paths
 DATA_FOLDER = "data"
 REPORTS_FOLDER = "reports"
+CSV_FILE = "reports/qa_summary.csv"
 
 # Create reports folder if not exists
 os.makedirs(REPORTS_FOLDER, exist_ok=True)
+# Create CSV summary file
+with open(CSV_FILE, "w", newline="", encoding="utf-8") as csv_file:
+
+    writer = csv.writer(csv_file)
+
+    writer.writerow([
+        "file_name",
+        "customer_sentiment",
+        "empathy_score",
+        "professionalism_score"
+    ])
 
 # Get all transcript files
 transcript_files = [
@@ -53,3 +66,14 @@ for file_name in transcript_files:
         json.dump(analysis_data, report_file, indent=4)
 
     print(f"\nReport saved: {report_name}")
+    # Append summary data to CSV
+with open(CSV_FILE, "a", newline="", encoding="utf-8") as csv_file:
+
+    writer = csv.writer(csv_file)
+
+    writer.writerow([
+        file_name,
+        analysis_data["customer_sentiment"],
+        analysis_data["empathy_score"],
+        analysis_data["professionalism_score"]
+    ])
